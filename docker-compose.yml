@@ -5,7 +5,7 @@ services:
         context: web
         dockerfile: Dockerfile
     ports:
-        - 0.0.0.0:8080:8080
+        - "0.0.0.0:8080:8080"
     depends_on:
     - db
     networks:
@@ -15,6 +15,10 @@ services:
     build: 
         context: db
         dockerfile: Dockerfile
+
+    #adds the location for the stored data to a relative path HOST:CONTAINER
+    volumes:
+        - ./postgres_data/data:/var/lib/postgresql/data
 
     networks:
     - backend-net
